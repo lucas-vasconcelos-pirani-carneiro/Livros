@@ -1,10 +1,10 @@
 # Análise de Algoritmos
-## 02.1. Objetivos
+## Objetivos
 - Entender porque a análise de algoritmos é importante 
 - Utilizar a “Notação O” para descrever o **tempo de execução**
 	- Operações sobre listas e dicionários
 
-## 02.2. O que é Análise de Algoritmos
+## O que é Análise de Algoritmos ?
 #### Algoritmos x Programas
 - **Algoritmo:** É uma lista passo a passo genérica de instruções para resolver um problema. 
 - **Programa:** É um algoritmo que foi codificado em alguma linguagem de programação.
@@ -86,7 +86,7 @@ A soma é 5000000050000000 demorou 0.00000119 segundos
 - **Resumo:** A técnica de aferição(tempo de execução) não nos fornece uma medida necessariamente útil visto que ela depende de diversos fatores.
 	- máquina, programa, hora do dia, compilador e linguagem de programação particulares
 
-## 02.3. Notação $O$
+## Notação $O$
 
 ### Unidades Básicas de Computação
 - Para avaliar a eficiência de um algoritmo, medimos o **número de passos** (ou operações) realizados, e não o tempo real em segundos. Isso independe da **máquina** ou **linguagem** usada.
@@ -182,11 +182,11 @@ Analisando os termos:
 - Termos menores e constantes são **ignorados** para análise assintótica
 Portanto, a **complexidade assintótica** é: $T(n) = O(n^2)$
 
-## 02.4.Exemplos
+## Exemplos
 - **Detecção de anagramas** para strings
 - Uma string é um anagrama de outra se a segunda é simplesmente um **rearranjo** da primeira
 - *Exemplos:* `amor` e `roma`, `socorram` e `marrocos`
-### 02.4.1.Solução 01: Marcação
+### Solução 01: Marcação
 - Verificar se **cada carácter** da **primeira** string realmente ocorre na **segunda**.
  - A **marcação de um caractere** será realizada substituindo-o pelo valor especial em Python `None`. 
  - Entretanto, como strings em Python são **imutáveis**, o primeiro passo do processo será **converter a segunda string** em uma **lista**. 
@@ -227,7 +227,7 @@ S = \sum_{k=1}^{n} k = \frac{n(n+1)}{2} = \frac{n^2 + n}{2}
 $$
 
 - **Complexidade Assintótica**: $O(n^2)$
-### 02.4.2. Ordenar e Comparar
+### Ordenar e Comparar
 - Anagramas possuem exatamente os **mesmos caracteres**
 - Se **ordenarmos** cada string **alfabeticamente**, de a a z, implica que as duas strings precisariam ser iguais
 - Converter as Strings em listas e usar o método `sort`
@@ -256,7 +256,7 @@ print(solucaoAnagrama2('abcde','edcba'))
 - Entretanto, é preciso analisar o custo do método de ordenação `sort`.
 	- $O(n^2)$ ou $O(n*log(n))$
 - Assim, as operações de ordenação dominam sobre a interação.Logo, o algoritmo terá a mesma ordem de magnitude do processo de ordenação
-### 02.4.3. Força Bruta
+### Força Bruta
 - Tenta todas as possibilidades à exaustão
 - Neste caso, podemos simplesmente gerar uma lista com todas as strings possíveis usando os caracteres de `s1` e verificar se `s2` ocorre
 - Contudo, analisando a quantidade de possibilidades teríamos o seguinte:
@@ -266,7 +266,7 @@ print(solucaoAnagrama2('abcde','edcba'))
 - Ou seja, o total de possibilidades = $n!$ possibilidades
 - Logo, para um $n$ muito grande ficaria completamente inviável
 
-### 02.4.4. Contar e Comparar
+### Contar e Comparar
 - Utilizar o fato de que quaisquer dois anagramas terão o mesmo número de a’s, o mesmo número de b’s, o mesmo número de c’s e assim por diante.
 - Contar o número de vezes que cada carácter aparece.
 - 26 caracteres = lista de 26 contadores (um para cada caractere possível)
@@ -303,7 +303,7 @@ print(solucaoAnagrama4('marrocos','socorram'))
 - Contudo, esse algoritmo utiliza memória adicional para armazenar as duas listas de contadores de caracteres.
 - Sacrificou espaço para ganhar tempo.
 
-## 02.5.Listas
+## Listas
 #### Operações Comuns e Complexidade
 
 | Operação                  | Complexidade |
@@ -358,7 +358,7 @@ popfim.timeit(number=1000)     # 0.0003 ms
 popzero.timeit(number=1000)    # 4.82 ms
 ```
 - Quando removemos o **primeiro elemento** de uma lista, todos os outros elementos da lista precisam ser movidos para a **esquerda**.
-## 02.6.Dicionários
+## Dicionários
 - Acessa os itens através de uma **chave** ao invés de uma posição
 
 | Operação             | Complexidade |
