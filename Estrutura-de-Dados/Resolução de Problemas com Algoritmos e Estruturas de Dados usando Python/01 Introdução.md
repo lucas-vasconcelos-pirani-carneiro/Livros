@@ -1,4 +1,5 @@
 # Introdução
+
 ## O que é Ciência da Computação?
 Ciência da Computação vai além do estudo de computadores — ela trata do **estudo de problemas, suas soluções e dos algoritmos** usados para resolvê-los. Um **algoritmo** é uma sequência finita de passos que, se seguidos corretamente, resolvem um problema.
 
@@ -98,15 +99,14 @@ print((5 >= 1) and (5 <= 10)) # True
 ```
 
 **Operadores lógicos:**
-
 | Operador | Significado    |
 | -------- | -------------- |
 | `and`    | E lógico       |
 | `or`     | OU lógico      |
 | `not`    | Negação lógica |
 
-**Operadores relacionais:**
 
+**Operadores relacionais:**
 |Operador|Significado|
 |---|---|
 |`<`|menor que|
@@ -195,6 +195,42 @@ print(s[4:])      # Fatiamento a partir do índice 4
 print(s + '!!!')  # Concatenação
 print('mundo' in s)  # Pertinência
 ```
+
+| Nome do método | Exemplo de Uso           | Descrição                                                     |
+| -------------- | ------------------------ | ------------------------------------------------------------- |
+| `center`       | `umastring.center(w)`    | Retorna uma string centrada em um campo de tamanho `w`        |
+| `count`        | `umastring.count(item)`  | Retorna o número de ocorrências de `item` na string           |
+| `ljust`        | `umastring.ljust(w)`     | Retorna uma string justificada à esquerda em um campo `w`     |
+| `lower`        | `umastring.lower()`      | Retorna uma string em minúsculas                              |
+| `rjust`        | `umastring.rjust(w)`     | Retorna uma string justificada à direita em um campo `w`      |
+| `find`         | `umastring.find(item)`   | Retorna o índice da primeira ocorrência de `item`             |
+| `split`        | `umastring.split(schar)` | Divide uma string em substrings usando `schar` como separador |
+> [!note] 
+> #### Strings x Listas
+> Uma diferença importante entre listas e strings é que as listas podem ser modificado enquanto strings não podem.(**Mutabilidade**)
+> - Listas : Mutáveis
+> - Strings : Imutáveis
+>
+> **Por exemplo**: é possível alterar um item em uma lista usando indexação e atribuição. Com uma string essa mudança não é permitida.
+
+```python
+>>> minhaLista
+[1, 3, True, 6.5]
+>>> minhaLista[0]=2**10
+>>> minhaLista
+[1024, 3, True, 6.5]
+>>>
+>>> meuNome
+'daniel'
+>>> meuNome[0]='X'
+
+Traceback (most recent call last):
+  File "<pyshell#84>", line 1, in -toplevel-
+    meuNome[0]='X'
+TypeError: object doesn't support item assignment
+>>>
+```
+
 #### Tuplas
 Tuplas são semelhantes às listas, mas **imutáveis**. Uma vez criada, seu conteúdo **não pode ser alterado**.   
 São muito usadas para representar **registros** ou **valores fixos**.
@@ -206,8 +242,43 @@ print(t[0])
 # t[0] = 4  # Isso causaria um erro
 ```
 
+```python
+>>> minhaTupla = (2,True,4.96)
+>>> minhaTupla
+(2, True, 4.96)
+>>> len(minhaTupla)
+3
+>>> minhaTupla[0]
+2
+>>> minhaTupla * 3
+(2, True, 4.96, 2, True, 4.96, 2, True, 4.96)
+>>> minhaTupla[0:2]
+(2, True)
+>>>
+```
+
+```python
+>>> minhaTupla[1]=False
+
+Traceback (most recent call last):
+  File "<pyshell#137>", line 1, in -toplevel-
+    minhaTupla[1]=False
+TypeError: object doesn't support item assignment
+>>>
+```
+
 #### Conjuntos
 Conjuntos (`set`) são coleções não ordenadas de elementos únicos. São úteis para operações de união, interseção e diferença.
+Conjunto Vazio: `set()`
+
+| Nome do Operador | Operador         | Descrição                                                            |                                                                       |
+| ---------------- | ---------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| pertinência      | `in`             | Verifica se um elemento pertence ao conjunto                         |                                                                       |
+| length           | `len`            | Retorna a cardinalidade (número de elementos) do conjunto            |                                                                       |
+| união            | `conj1           | conj2`                                                               | Retorna um novo conjunto com todos os elementos de ambos os conjuntos |
+| interseção       | `conj1 & conj2`  | Retorna um novo conjunto com apenas os elementos comuns a ambos      |                                                                       |
+| diferença        | `conj1 - conj2`  | Retorna os itens do primeiro conjunto que não estão no segundo       |                                                                       |
+| subconjunto      | `conj1 <= conj2` | Verifica se todos os elementos do primeiro conjunto estão no segundo |                                                                       |
 
 ```python
 A = {1, 2, 3}
@@ -217,8 +288,61 @@ print(A & B)  # Interseção
 print(A - B)  # Diferença
 ```
 
+| Nome do Método  | Exemplo de Uso                  | Descrição                                                             |
+|-----------------|----------------------------------|------------------------------------------------------------------------|
+| `union`         | `conj.union(otherset)`          | Retorna um novo conjunto com todos os elementos de ambos os conjuntos |
+| `intersection`  | `conj.intersection(otherset)`   | Retorna apenas os elementos comuns entre os conjuntos                 |
+| `difference`    | `conj.difference(otherset)`     | Retorna os itens do conjunto atual que não estão no outro             |
+| `issubset`      | `conj.issubset(otherset)`       | Verifica se todos os elementos do conjunto atual estão no outro       |
+| `add`           | `conj.add(item)`                | Adiciona um item ao conjunto                                          |
+| `remove`        | `conj.remove(item)`             | Remove um item do conjunto                                            |
+| `pop`           | `conj.pop()`                    | Remove e retorna um elemento arbitrário do conjunto                   |
+| `clear`         | `conj.clear()`                  | Remove todos os elementos do conjunto                                 |
+
+```python
+>>> umConjunto
+{False, 4.5, 3, 6, 'gato'}
+>>> outroConjunto = {99,3,100}
+>>> umConjunto.union(outroConjunto)
+{False, 4.5, 3, 100, 6, 'gato', 99}
+>>> umConjunto | outroConjunto
+{False, 4.5, 3, 100, 6, 'gato', 99}
+>>> umConjunto.intersection(outroConjunto)
+{3}
+>>> umConjunto & outroConjunto
+{3}
+>>> umConjunto.difference(outroConjunto)
+{False, 4.5, 6, 'gato'}
+>>> umConjunto - outroConjunto
+{False, 4.5, 6, 'gato'}
+>>> {3,100}.issubset(outroConjunto)
+True
+>>> {3,100}<=outroConjunto
+True
+>>> umConjunto.add("casa")
+>>> umConjunto
+{False, 4.5, 3, 6, 'casa', 'gato'}
+>>> umConjunto.remove(4.5)
+>>> umConjunto
+{False, 3, 6, 'casa', 'gato'}
+>>> umConjunto.pop()
+False
+>>> umConjunto
+{3, 6, 'casa', 'gato'}
+>>> umConjunto.clear()
+>>> umConjunto
+set()
+>>>
+```
+
 #### Dicionários
 Dicionários (`dict`) são coleções de pares chave-valor. São extremamente úteis para representar **associações**. 
+
+| Operador | Exemplo           | Descrição                                                         |
+|----------|-------------------|-------------------------------------------------------------------|
+| `[]`     | `myDict[k]`       | Retorna o valor associado à chave `k`, ou gera erro se não existir |
+| `in`     | `key in dicio`    | Retorna `True` se `key` estiver no dicionário, `False` caso contrário |
+| `del`    | `del dicio[key]`  | Remove o item do dicionário associado à chave `key`               |
 
 ```python
 meu_dict = {'nome': 'João', 'idade': 25}
@@ -229,10 +353,46 @@ print(meu_dict)
 ```
 
 Você pode iterar sobre chaves, valores ou ambos:
-
 ```python
 for chave, valor in meu_dict.items():
     print(chave, valor)
+```
+
+```python
+>>> capitais = {'Amazonas':'Manaus','Paraná':'Curitiba'}
+>>> capitais
+{'Amazonas': 'Manaus', 'Paraná': 'Curitiba'}
+>>>
+```
+
+| Nome do Método | Exemplo de Uso      | Descrição                                                                   |
+| -------------- | ------------------- | --------------------------------------------------------------------------- |
+| `keys`         | `dicio.keys()`      | Retorna as chaves do dicionário em um objeto `dict_keys`                    |
+| `values`       | `dicio.values()`    | Retorna os valores do dicionário em um objeto `dict_values`                 |
+| `items`        | `dicio.items()`     | Retorna os pares chave-valor em um objeto `dict_items`                      |
+| `get`          | `dicio.get(k)`      | Retorna o valor associado a `k`, ou `None` se `k` não estiver no dicionário |
+| `get`          | `dicio.get(k, alt)` | Retorna o valor associado a `k`, ou `alt` se `k` não estiver no dicionário  |
+
+```python
+>>> ramal={'daniel':1410,'adriana':1137}
+>>> ramal
+{'adriana': 1137, 'daniel': 1410}
+>>> ramal.keys()
+dict_keys(['adriana', 'daniel'])
+>>> list(ramal.keys())
+['adriana', 'daniel']
+>>> ramal.values()
+dict_values([1137, 1410])
+>>> list(ramal.values())
+[1137, 1410]
+>>> ramal.items()
+dict_items([('adriana', 1137), ('daniel', 1410)])
+>>> list(ramal.items())
+[('adriana', 1137), ('daniel', 1410)]
+>>> ramal.get("pedro")
+>>> ramal.get("pedro","SEM RAMAL")
+'SEM RAMAL'
+>>>
 ```
 
 ### Conversão entre Tipos
@@ -626,3 +786,4 @@ def raiz_quadrada(n):
 ```
 
 ## Programação Orientada a Objetos em Python: Definindo Classes
+
