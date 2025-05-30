@@ -168,6 +168,7 @@ print(A)  # Todas as sublistas apontam para a mesma lista
 |`count(item)`|`lista.count(3)`|Conta quantas vezes o item aparece|
 |`remove(item)`|`lista.remove(3)`|Remove a 1ª ocorrência do item|
 |`del lista[i]`|`del lista[0]`|Apaga item na posição i|
+
 ```python
 minhaLista = [1024, 3, True, 6.5]
 minhaLista.append(False)
@@ -205,6 +206,7 @@ print('mundo' in s)  # Pertinência
 | `rjust`        | `umastring.rjust(w)`     | Retorna uma string justificada à direita em um campo `w`      |
 | `find`         | `umastring.find(item)`   | Retorna o índice da primeira ocorrência de `item`             |
 | `split`        | `umastring.split(schar)` | Divide uma string em substrings usando `schar` como separador |
+
 > [!note] 
 > #### Strings x Listas
 > Uma diferença importante entre listas e strings é que as listas podem ser modificado enquanto strings não podem.(**Mutabilidade**)
@@ -275,7 +277,7 @@ Conjunto Vazio: `set()`
 | ---------------- | ---------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | pertinência      | `in`             | Verifica se um elemento pertence ao conjunto                         |                                                                       |
 | length           | `len`            | Retorna a cardinalidade (número de elementos) do conjunto            |                                                                       |
-| união            | `conj1           | conj2`                                                               | Retorna um novo conjunto com todos os elementos de ambos os conjuntos |
+| união            | `conj1 \| conj2` | Retorna um novo conjunto com todos os elementos de ambos os conjuntos                                                              | |
 | interseção       | `conj1 & conj2`  | Retorna um novo conjunto com apenas os elementos comuns a ambos      |                                                                       |
 | diferença        | `conj1 - conj2`  | Retorna os itens do primeiro conjunto que não estão no segundo       |                                                                       |
 | subconjunto      | `conj1 <= conj2` | Verifica se todos os elementos do primeiro conjunto estão no segundo |                                                                       |
@@ -710,6 +712,7 @@ Uma forma alternativa e mais concisa de criar listas em Python é usando o **pre
 ```
 
 ## Tratamento de Exceções
+
 ### Tipos de Erros 
 **1.Erro de Sintaxe**:
 - Erro na estrutura do código (ex.: esquecer : em for i in range(10)).
@@ -724,6 +727,7 @@ SyntaxError: invalid syntax (<pyshell#61>, line 1)
 **2.Erro Lógico**:
 - Programa executa, mas o resultado está errado (falha no algoritmo ou na implementação).
 - Pode causar **exceções** (erros em tempo de execução), como divisão por zero ou acesso a índices inválidos em listas.
+
 ### Exceções
 Erros em **tempo de execução** que podem **encerrar o programa** se não forem tratados.  
 **Tratamento com `try/except`**:
@@ -766,6 +770,7 @@ def quadrado(n):
 ### Abstração
 - Ao usar funções, não é necessário conhecer a **implementação interna**, apenas o que a função **recebe e retorna**.
 - Exemplo: `sqrt` da biblioteca `math` esconde os cálculos internos da raiz quadrada.
+
 ### Método de Newton (para raiz quadrada)
 - Técnica **iterativa** para calcular raiz quadrada aproximada.
 - Fórmula:
@@ -784,6 +789,3 @@ def raiz_quadrada(n):
 >>> raiz_quadrada(4563)
 67.549981495186216
 ```
-
-## Programação Orientada a Objetos em Python: Definindo Classes
-
