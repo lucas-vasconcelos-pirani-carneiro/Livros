@@ -1,5 +1,5 @@
 # Busca
- **Busca** é o processo algorítmico de encontrar um **item específico** numa **coleção de itens**.   
+**Busca** é o processo algorítmico de encontrar um **item específico** numa **coleção de itens**.   
 Normalmente, **Retorna** `True` (item está presente) ou `False` (item **não** está presente)   
 Pode ser modificada em algumas situações para retornar o **elemento** encontrado.
 

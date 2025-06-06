@@ -1,1 +1,4 @@
 # Hashing
+
+## Funções de Espelhamento
+
