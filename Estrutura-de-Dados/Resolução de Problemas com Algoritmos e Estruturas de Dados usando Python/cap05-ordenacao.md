@@ -77,12 +77,12 @@ O **Bubble Sort** realiza sempre `n - 1` passagens, independentemente da ordem i
 A soma total de comparações é:
 
 $$
-\sum_{i=1}^{n-1} i = \frac{n^2 - n}{2} \Rightarrow \mathcal{O}(n^2)
+\sum_{i=1}^{n-1} i = \frac{n^2 - n}{2} \Rightarrow O(n^2)
 $$
 
 Complexidade:
-- **Pior caso** : $\mathcal{O}(n^2)$ [ lista invertida ].
-- **Melhor caso** (com otimização swapped): $\mathcal{O}(n)$ [ lista já ordenada ].
+- **Pior caso** : $O(n^2) \Rightarrow \text{lista invertida}$.
+- **Melhor caso** (com otimização swapped): $O(n) \Rightarrow \text{lista já ordenada}$.
 
 ### Versão Otimizada
 Caso **nenhuma troca ocorra** durante uma passagem, podemos concluir que a **lista já está ordenada**, e o algoritmo pode ser encerrado mais cedo.

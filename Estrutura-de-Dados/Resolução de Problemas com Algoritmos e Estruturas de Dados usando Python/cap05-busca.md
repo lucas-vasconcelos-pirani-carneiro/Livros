@@ -209,7 +209,7 @@ assert binarySearchRecursive([], 1) == False
 ### Análise 
 A cada passo, o tamanho do problema é **dividido pela metade**:
 
-- **Melhor caso**: o item está no meio → 1 comparação.
-- **Pior caso**: `log₂(n)` comparações até encontrar (ou não) o item.
+- **Melhor caso** : o item está no meio $\Rightarrow$ **1** comparação.
+- **Pior caso** : $\mathbf{log_2(n)}$ comparações até encontrar (ou não) o item.
 
 Portanto, a **complexidade da busca binária é $O(\log n)$**, o que a torna muito mais eficiente do que a busca sequencial, especialmente em listas grandes.
