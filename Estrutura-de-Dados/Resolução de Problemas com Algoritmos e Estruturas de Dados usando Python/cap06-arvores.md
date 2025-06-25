@@ -308,5 +308,3 @@ Além disso, podemos adcionar métodos para **acessar os valores** filhos da esq
     def getRootVal(self):
         return self.key
 ```
-
-
