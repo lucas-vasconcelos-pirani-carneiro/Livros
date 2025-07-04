@@ -207,3 +207,52 @@ Retorne True.
 
     return verificaSimetria_rec(self.raiz.esq, self.raiz.dir)
  ```
+
+## Travessias
+
+ ![travessias](travessia-arvores.png)
+
+### Pré-Ordem
+1. Raiz
+2. Pré-Ordem na subárvore da esquerda
+3. Pré-Ordem na subárvore da direita
+> 2-5-3-8-4-7-1-9-6
+
+```python []
+def preordem(raiz):
+    if raiz:
+        print(raiz.dado)
+        preordem(raiz.esq)
+        preordem(raiz.dir)
+
+
+
+```
+
+### Inordem
+1. Pós-Ordem na subárvore da esquerda
+2. Raiz 
+3. Pós-Ordem na subárvore da direita
+> 3-5-4-8-2-1-9-7-6
+
+```python []
+def inordem(raiz):
+    if raiz:
+        inordem(raiz.esq)
+        print(raiz.dado)
+        inordem(raiz.dir)
+```
+
+### Pós-Ordem
+1. Pós-Ordem na subárvore da esquerda
+2. Pós-Ordem na subárvore da direita
+3. Raiz
+> 3-4-8-5-9-1-6-7-2
+
+```python []
+def posordem(raiz):
+    if raiz:
+        posordem(raiz.esq)
+        posordem(raiz.dir)
+        print(raiz.dado)
+```

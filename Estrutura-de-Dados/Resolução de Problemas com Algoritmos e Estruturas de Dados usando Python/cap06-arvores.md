@@ -309,4 +309,185 @@ Além disso, podemos adcionar métodos para **acessar os valores** filhos da esq
         return self.key
 ```
 
-## 
+## Árvores de Análise Sintática (Parse Tree)
+A seguir veremos um exemplo de como árvores podem ser usadas para resolver problemas reais.
+
+**Exemplo01:** *Estrutura hierárquica* de uma sentença simples. Ao representar uma sentença como uma estrutura de árvore nos permite trabalhar com as **partes individuais** da sentença por meio de **subárvores**.
+
+![analise-verbal](./img/cap06/cap06-imagem17.png)
+
+**Exemplo02:** Expressão Numérica - ( 3 + ( 4 * 5 ) )
+
+![expressao-numerica](./img/cap06/cap06-imagem18.png)
+
+Sabemos que a multiplicação tem prioridade sobre a adição. Os parênteses nos mostram a ordem correta de cálculo.   
+A **hierarquia da árvore** nos ajuda a visualizar essa **ordem**: primeiro resolvemos as subexpressões (como o 4 * 5), depois somamos com o 3.  
+Ao resolver cada parte, podemos substituir os ramos da árvore por um **único nó**, deixando a árvore mais simples 
+
+![expressao-resumida](./img/cap06/cap06-imagem19.png)
+
+### Construção da Árvores de Análise (Parse Trees)
+Para construir uma árvore a partir de uma expressão como ( 3 + ( 4 * 5 ) ), seguimos estes passos:
+
+#### Tipos de tokens:
+- `(` --> **início** de uma **nova subárvore**
+- `)` --> **fim** de uma **subárvore**
+- Operadores --> `(+, -, *, /)`
+- Operandos --> `(Números)`
+
+#### Regras de Construção:
+1. **Se for** `(`: Crie um novo **nó à esquerda** e desça.
+2. **Se for Operador**: Defina como valor do nó atual, crie um nó **à direita** e desça.
+3. **Se for Número**: Atribua ao nó atual e suba.
+4. **Se for** `)`: Suba para o nó pai.
+
+#### *Exemplo*:
+Expressão: ( 3 + ( 4 * 5 ) )  
+Tokens: `['(', '3', '+', '(', '4', '*', '5', ')', ')']`
+
+1. Cria Árvore vazia
+
+![parte01](image-1.png)
+
+2. Lê `(` : Novo nó à esquerda
+
+![parte02](image-2.png)
+
+3. Lê `3` : Define valor e sobe
+
+![parte03](image-3.png)
+
+4. Lê `+` : Define valor, cria nó à direita e desce
+
+![parte04](image-4.png)
+
+5. Lê `(` : Novo nó à esquerda
+
+![parte05](image-5.png)
+
+6. Lê `4` : Define valor e sobe
+
+![parte06](image-6.png)
+
+7. Lê `*` : Define valor, novo nó à direita e desce
+
+![parte07](image-7.png)
+
+8. Lê `5` : Define valor e sobe
+9. Lê `)` : Sobe
+10. Lê `)` : Sobe --> fim da construção
+
+![parte08](image.png)
+
+#### Gerenciando a construção da árvore
+Durante a construção da árvore de análise, é necessário acompanhar:
+- O **nó atual**
+- E seu **pai**
+
+A Árvore permite acessar apenas osfilhos (com `getLeftChild` e `getRightChild`), mas **não** os pais diretamente.
+
+**Solução** : Usar uma **Pilha (Stack)** para guardar os nós enquanto descemos na árvore.
+
+```python []
+def buildParseTree(fpexp):
+    fplist = fpexp.split()
+    pStack = Stack()
+    eTree = BinaryTree('')
+    pStack.push(eTree)
+    currentTree = eTree
+
+    for i in fplist:
+        if i == '(':
+            currentTree.insertLeft('')
+            pStack.push(currentTree)
+            currentTree = currentTree.getLeftChild()
+        elif i in ['+', '-', '*', '/']:
+            currentTree.setRootVal(i)
+            currentTree.insertRight('')
+            pStack.push(currentTree)
+            currentTree = currentTree.getRightChild()
+        elif i == ')':
+            currentTree = pStack.pop()
+        else:  # número
+            currentTree.setRootVal(int(i))
+            currentTree = pStack.pop()
+
+    return eTree
+```
+
+#### Avaliação Recursiva da Árvore
+Cada **subárvore** representa uma operação. A função `evaluate`:
+- Retorna diretamente o valor se o nó for uma **folha** (número).
+- Caso contrário, avalia os dois filhos recursivamente e aplica o **operador** no nó pai.
+
+```python [] 
+import operator
+
+def evaluate(parseTree):
+    opers = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
+    leftC = parseTree.getLeftChild()
+    rightC = parseTree.getRightChild()
+
+    if leftC and rightC:
+        fn = opers[parseTree.getRootVal()]
+        return fn(evaluate(leftC), evaluate(rightC))
+    else:
+        return parseTree.getRootVal()
+```
+
+## Travessias 
+Existem **três padrões** comumente usados para **visitar** todos os **nós** de uma árvore.  
+A **diferença** entre esses padrões está na **ordem** em que cada nó é visitado.  
+Esse processo é chamado de **Percurso/Travessia** (traversal).  
+Os três percursos que veremos são chamados de **pré-ordem**, **em ordem** e **pós-ordem**.  
+O código para escrever as travessias é supreendemente **elegante** pois são escritos de forma recursiva.  
+**Obs :** Existem duas maneiras de escrever as travessias que são usando função **externa** que recebe uma árvore binária como parâmetro ou criar um próprio **método** da árvore.    
+Normalmente, é melhor implementar o percurso como uma função **externa** pois raramente se deseja apenas percorrer a árvore.   
+Na maioria dos casos, queremos fazer algo enquanto utilizamos um dos padrões básicos de percurso.
+
+### Pré-Ordem
+Visitamos o **nó raiz** primeiro, depois fazemos **recursivamente** um percurso em pré-ordem da **subárvore esquerda**, seguido por um percurso recursivo da **subárvore direita**.
+
+
+
+```python
+# Usando função externa
+def preorder(tree):
+    if tree:
+        print(tree.getRootVal())
+        preorder(tree.getLeftChild())
+        preorder(tree.getRightChild())
+```
+
+```python
+# Usando como método
+def preorder(self):
+    print(self.key)
+    if self.leftChild:
+        self.leftChild.preorder()
+    if self.rightChild:
+        self.rightChild.preorder()
+```
+
+### Em Ordem
+Fazemos **recursivamente** um percurso em ordem da **subárvore esquerda**, visitamos o **nó raiz**, e por fim fazemos um percurso **recursivo** da **subárvore direita**.
+
+```python
+def postorder(tree):
+    if tree != None:
+        postorder(tree.getLeftChild())
+        postorder(tree.getRightChild())
+        print(tree.getRootVal())
+```
+
+### Pós-Ordem
+Fazemos **recursivamente** um percurso pós-ordem da **subárvore esquerda** e da **subárvore direita**, seguido de uma visita ao **nó raiz**.
+
+```python
+def inorder(tree):
+    if tree != None:
+        inorder(tree.getLeftChild())
+        print(tree.getRootVal())
+        inorder(tree.getRightChild())
+```
+
