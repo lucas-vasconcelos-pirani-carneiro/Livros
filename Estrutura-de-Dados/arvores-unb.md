@@ -208,6 +208,21 @@ Retorne True.
     return verificaSimetria_rec(self.raiz.esq, self.raiz.dir)
  ```
 
+VIII. **Apagar** todas as folhas de uma árvore que tenham a chave igual a um valor dado
+
+```python
+def apaga_folhas(self, dado):
+    def apaga_folhas_rec(no, dado):
+        if no is None:
+            return None
+        if no.esq is None and no.dir is None and no.dado == dado:
+            return None
+        no.esq = apaga_folhas_rec(no.esq, dado)
+        no.dir = apaga_folhas_rec(no.dir, dado)
+        return no
+    self.raiz = apaga_folhas_rec(self.raiz, dado)  # Atualiza a raiz também, se necessário
+```
+
 ## Travessias
 
  ![travessias](travessia-arvores.png)
@@ -224,9 +239,6 @@ def preordem(raiz):
         print(raiz.dado)
         preordem(raiz.esq)
         preordem(raiz.dir)
-
-
-
 ```
 
 ### Inordem

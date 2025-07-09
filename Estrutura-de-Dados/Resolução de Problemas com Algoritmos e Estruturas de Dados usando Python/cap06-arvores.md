@@ -347,37 +347,37 @@ Tokens: `['(', '3', '+', '(', '4', '*', '5', ')', ')']`
 
 1. Cria Árvore vazia
 
-![parte01](image-1.png)
+![parte01](./img/cap06/cap06-imagem20.png)
 
 2. Lê `(` : Novo nó à esquerda
 
-![parte02](image-2.png)
+![parte02](./img/cap06/cap06-imagem21.png)
 
 3. Lê `3` : Define valor e sobe
 
-![parte03](image-3.png)
+![parte03](./img/cap06/cap06-imagem22.png)
 
 4. Lê `+` : Define valor, cria nó à direita e desce
 
-![parte04](image-4.png)
+![parte04](./img/cap06/cap06-imagem23.png)
 
 5. Lê `(` : Novo nó à esquerda
 
-![parte05](image-5.png)
+![parte05](./img/cap06/cap06-imagem24.png)
 
 6. Lê `4` : Define valor e sobe
 
-![parte06](image-6.png)
+![parte06](./img/cap06/cap06-imagem25.png)
 
 7. Lê `*` : Define valor, novo nó à direita e desce
 
-![parte07](image-7.png)
+![parte07](./img/cap06/cap06-imagem26.png)
 
 8. Lê `5` : Define valor e sobe
 9. Lê `)` : Sobe
 10. Lê `)` : Sobe --> fim da construção
 
-![parte08](image.png)
+![parte08](./img/cap06/cap06-imagem27.png)
 
 #### Gerenciando a construção da árvore
 Durante a construção da árvore de análise, é necessário acompanhar:
@@ -439,16 +439,19 @@ def evaluate(parseTree):
 Existem **três padrões** comumente usados para **visitar** todos os **nós** de uma árvore.  
 A **diferença** entre esses padrões está na **ordem** em que cada nó é visitado.  
 Esse processo é chamado de **Percurso/Travessia** (traversal).  
+
 Os três percursos que veremos são chamados de **pré-ordem**, **em ordem** e **pós-ordem**.  
+
 O código para escrever as travessias é supreendemente **elegante** pois são escritos de forma recursiva.  
+
 **Obs :** Existem duas maneiras de escrever as travessias que são usando função **externa** que recebe uma árvore binária como parâmetro ou criar um próprio **método** da árvore.    
+
 Normalmente, é melhor implementar o percurso como uma função **externa** pois raramente se deseja apenas percorrer a árvore.   
+
 Na maioria dos casos, queremos fazer algo enquanto utilizamos um dos padrões básicos de percurso.
 
 ### Pré-Ordem
 Visitamos o **nó raiz** primeiro, depois fazemos **recursivamente** um percurso em pré-ordem da **subárvore esquerda**, seguido por um percurso recursivo da **subárvore direita**.
-
-
 
 ```python
 # Usando função externa
@@ -469,7 +472,7 @@ def preorder(self):
         self.rightChild.preorder()
 ```
 
-### Em Ordem
+### In-Ordem
 Fazemos **recursivamente** um percurso em ordem da **subárvore esquerda**, visitamos o **nó raiz**, e por fim fazemos um percurso **recursivo** da **subárvore direita**.
 
 ```python
