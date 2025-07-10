@@ -338,8 +338,8 @@ elif currentNode.hasBothChildren():  # nó interno
 **Encontrando o Sucessor**
 O sucessor de um nó é o **menor valor da subárvore direita**. Há três possibilidades:
 
-> [!note]   
-**Obs** : Iremos aproveitar as mesmas propriedades que fazem com que uma **travessia em ordem** (`inorder`) imprima os **nós em ordem crescente**.
+> [!note]    
+> **Obs** : Iremos aproveitar as mesmas propriedades que fazem com que uma **travessia em ordem** (`inorder`) imprima os **nós em ordem crescente**.
 
 1. O nó tem um filho à direita $\rightarrow$ **menor da subárvore direita**.
 2. Não tem filho à direita e é **filho esquerdo** $\rightarrow$ pai é o sucessor.
@@ -456,4 +456,57 @@ Vimos que o desempenho do método `put` é limitado pela **altura da árvore**, 
 Mas o pior caso para encontrar o sucessor também é **proporcional à altura da árvore**, então o trabalho **dobra**, mas **continua sendo** $O(h)$.  
 Esse **fator constante** de multiplicação **não altera** a **complexidade assintótica**. 
 
+## Balanceamento de Árvores Binárias de Busca
 
+Na seção anterior, vimos como construir uma **árvore binária de busca (BST)**.
+Como aprendemos, o desempenho da BST pode **se degradar para $O(n)$** em operações como `get` e `put` quando a árvore se torna **desequilibrada**.
+
+
+![balanceamento-arvores](img/cap06/cap06-imagem34.png)
+
+Nesta seção, veremos um tipo especial de árvore binária de busca que **mantém-se automaticamente balanceada** o tempo todo.  
+Essa árvore é chamada de **árvore AVL**, em homenagem aos seus inventores: **G.M. Adelson-Velskii** e **E.M. Landis**.
+
+
+## Árvores AVL
+A **árvore AVL** implementa o TAD `Map` da mesma forma que uma árvore binária comum.
+A diferença está na **forma como ela se comporta**, garantindo que a árvore **permaneça balanceada**.  
+Para isso, a árvore AVL mantém um **fator de balanceamento** para cada nó da árvore:
+
+$fatorDeBalanceamento=altura(subaˊrvore esquerda)−altura(subárvore direita)$
+
+- Se o fator for **maior que 0**, a subárvore está **pesada à esquerda**.
+- Se for **menor que 0**, está **pesada à direita**.
+- Se for **0**, a subárvore está **perfeitamente balanceada**.
+
+Para propósitos práticos, considera-se que a árvore está **balanceada** se o fator estiver dentro do intervalo:
+${−1, 0, 1}$
+
+Se algum nó ultrapassar esse intervalo, **operações de rotação** são aplicadas para restaurar o balanceamento da árvore.
+
+### Desempenho da Árvore AVL
+O objetivo do balanceamento é garantir um melhor desempenho assintótico.
+
+Com o fator de balanceamento mantido entre -1 e 1, a **altura** da árvore AVL é proporcional a $\log_2 n$, o que garante que operações como busca, inserção e remoção tenham **complexidade**: $O(log_2 n)$
+
+#### Relação com a Sequência de Fibonacci
+Ao estudar a estrutura das árvores AVL mais desbalanceadas possíveis (ainda válidas), é possível observar um padrão semelhante à sequência de Fibonacci:
+
+![avl1](img/cap06/cap06-imagem35.png)
+
+$N_h = 1 + N_{h−1} + N_{h−2}$
+
+Onde $N_h$ representa o **número mínimo de nós** em uma árvore AVL de altura $h$.
+
+Utilizando aproximações da sequência de Fibonacci, podemos derivar uma fórmula para a **altura** da árvore AVL:
+
+$N_h \approx \frac{\phi^{h+2}}{\sqrt5} − 1 $  
+
+$\text{com } \phi = \frac{1 + \sqrt5}{2} \text{ (razão aúrea)}$
+
+Reorganizando os termos e aplicando logaritmo:  
+$ h \approx 1.44 \cdot \log⁡_2 N_h$
+
+Ou seja, **a altura da árvore AVL é limitada por um múltiplo constante de $\log_2 n$**, com constante aproximada de **1.44**.
+
+### Implementação 
